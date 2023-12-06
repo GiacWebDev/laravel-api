@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\PageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,11 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/prova-api', function() {
-    $user = [
-        'name' => 'Giuseppe',
-        'last_name' => 'Rossi',
-    ];
-
-    return response()->json($user);
-});
+Route::get('/projects', [PageController::class, 'index']);
