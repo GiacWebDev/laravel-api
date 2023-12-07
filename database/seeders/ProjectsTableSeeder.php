@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Type;
 use App\Models\Project;
+use App\Functions\Helper;
 
 class ProjectsTableSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class ProjectsTableSeeder extends Seeder
             //ottengo un tipo random prendendolo dall'id
             $new_project->type_id = Type::all()->random()->id;
             $new_project->name = $faker->words(2, true);
+            $new_project->slug = Helper::generateSlug($new_project->name, Project::class);
             $new_project->status = $faker->word;
             $new_project->description = $faker->paragraph;
 

@@ -8,6 +8,7 @@ use App\Models\Tecnology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Functions\Helper;
 
 class ProjectController extends Controller
 {
@@ -45,8 +46,8 @@ class ProjectController extends Controller
     {
         $new_project = new Project();
         $form_data = $request->all();
+        $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
         $new_project->fill($form_data);
-
 
         $new_project->save();
 
@@ -95,7 +96,9 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $form_data = $request->all();
+        $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
         $project->update($form_data);
+
         return redirect()->route('admin.projects.show', $project);
     }
 
