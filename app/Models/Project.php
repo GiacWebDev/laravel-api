@@ -20,6 +20,4 @@ class Project extends Model
     }
 
     protected $fillable = ['name', 'description', 'status', 'image', 'image_original_name', 'type_id', 'tecnologies_id', 'slug'];
-
-
 }

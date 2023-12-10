@@ -23,28 +23,26 @@
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->name }}</td>
                     <td>
-
-                        @forelse ($project->tecnologies as $tecnology)
-                            <span class="badge text-bg-info">{{ $tecnology->name }}</span>
-                        @empty
+                        @if ($project->tecnologies)
+                            @forelse ($project->tecnologies as $tecnology)
+                                <span class="badge text-bg-info">{{ $tecnology->name }}</span>
+                            @empty
+                                -
+                            @endforelse
+                        @else
                             -
-                        @endforelse
-
+                        @endif
                     </td>
                     <td>{{ $project->type?->name }}</td>
 
                     <td><a href="{{ route('admin.projects.show', $project) }}" class="btn btn-success"><i
                                 class="fa-solid fa-eye" style="color: #ffffff;"></i></a>
-                    </td>
-                    <td><a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning"><i
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning"><i
                                 class="fa-solid fa-pen" style="color: #ffffff;"></i></a>
-                    </td>
-                    <td>
                         @include('admin.partials.form-delete', [
                             'route' => route('admin.projects.destroy', $project),
                             'message' => 'Sei sicuro di voler eliminare questa tecnologia?',
                         ])
-                    </td>
 
                 </tr>
             @endforeach
