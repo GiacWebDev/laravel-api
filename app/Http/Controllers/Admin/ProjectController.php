@@ -56,11 +56,13 @@ class ProjectController extends Controller
             $form_data['image'] = Storage::put('uploads', $form_data['image']);
         }
 
-        if(array_key_exists('tecnologies', $form_data)) {
-            $new_project->tecnologies()->attach($form_data['tecnologies']);
+        // Aggiungi la tecnologia al progetto solo se è stata selezionata
+        if ($request->has('technology')) {
+            $new_project->tecnologies()->attach($request->input('technology'));
         }
 
-        return redirect()->route('admin.projects.show',$new_project);
+        return redirect()->route('admin.projects.show', $new_project);
+
     }
 
     /**

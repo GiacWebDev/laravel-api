@@ -43,7 +43,7 @@
                             'route' => route('admin.projects.destroy', $project),
                             'message' => 'Sei sicuro di voler eliminare questa tecnologia?',
                         ])
-
+                    </td>
                 </tr>
             @endforeach
         </tbody>

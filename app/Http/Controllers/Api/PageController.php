@@ -9,7 +9,7 @@ use App\Models\Project;
 class PageController extends Controller
 {
     public function index() {
-        $projects = Project::with('tecnology', 'type')->get();
+        $projects = Project::with('tecnologies', 'type')->get();
         return response()->json($projects);
     }
 }
